@@ -5,3 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Tweet.create(topic: 'nasa', author: 'Buzz A.', content: 'This is a dummy tweet', published_date: DateTime.now)
