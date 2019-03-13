@@ -8,7 +8,8 @@ class Tweet < ApplicationRecord
 
     result = JSON.parse(response_body)
     result['statuses'].each do |tweet|
-        Tweet.first_or_create(topic: topic, author: tweet['user']['screen_name'], content: tweet['text'], published_date: tweet['created_at'])
+        next if Tweet.find_by(content: tweet['text'])
+        Tweet.create(topic: topic, author: tweet['user']['screen_name'], content: tweet['text'], published_date: tweet['created_at'])
     end
   end
 end
