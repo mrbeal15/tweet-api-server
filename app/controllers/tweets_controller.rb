@@ -16,4 +16,14 @@ class TweetsController < ApplicationController
       render json: {error: e}
     end
   end
+
+  def create
+    Tweet.post(get_content[:content])
+  end
+
+  private
+
+  def get_content
+    params.permit(:content)
+  end
 end
