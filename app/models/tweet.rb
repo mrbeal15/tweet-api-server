@@ -12,4 +12,17 @@ class Tweet < ApplicationRecord
         Tweet.create(topic: topic, author: tweet['user']['screen_name'], content: tweet['text'], published_date: tweet['created_at'])
     end
   end
+
+  def self.post(content)
+    request = {
+      :headers => {
+        :Authorization => "bearer #{ENV['TWITTER_TOKEN']}"
+      },
+      :body => content
+    }
+
+    response = HTTP.post("#{ENV['TWITTER_HOST']}/statuses/update.json", request)
+
+    puts " this is the response --> #{response}"
+  end
 end
